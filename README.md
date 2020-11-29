@@ -7,7 +7,7 @@
 - [x] Mixed-case ASCII
 - [x] Uppercase ASCII
 - [x] Mixed-case Unicode
-- [ ] Uppercase Unicode
+- [x] Uppercase Unicode
 - [ ] `mixedcase_ascii_nocompress`
 - [ ] `uppercase_ascii_nocompress`
 - [ ] `mixedcase_unicode_nocompress`

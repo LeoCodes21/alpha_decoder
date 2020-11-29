@@ -47,6 +47,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opts: Opts = Opts::parse();
     let available_formats: Vec<Box<dyn formats::ShellcodeFormat>> = vec![
         Box::new(formats::unicode::mixed_case::MixedCaseUnicodeFormat {}),
+        Box::new(formats::unicode::uppercase::UppercaseUnicodeFormat {}),
         Box::new(formats::ascii::mixed_case::MixedCaseAsciiFormat {}),
         Box::new(formats::ascii::uppercase::UppercaseAsciiFormat {}),
     ];
