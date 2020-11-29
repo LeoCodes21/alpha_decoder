@@ -14,6 +14,7 @@ This tool is currently a work-in-progress. Here is a rough to-do list:
 - [ ] Create a proper API for identifying and parsing Alpha2 formats
 - [ ] Expose more information about Alpha2 payloads to the user
 - [ ] Expose functionality as a crate
+- [ ] Add tests
 
 ## Installation
 Download the latest build from [repository releases](https://github.com/LeoCodes21/alpha_decoder/releases).
