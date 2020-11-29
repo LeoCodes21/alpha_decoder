@@ -2,15 +2,22 @@
 
 `alpha_decoder` is a Rust command-line tool for decoding Alpha2-based shellcode.
 
+## Supported formats
+
+- [x] Mixed-case ASCII
+- [x] Uppercase ASCII
+- [x] Mixed-case Unicode
+- [ ] Uppercase Unicode
+- [ ] `mixedcase_ascii_nocompress`
+- [ ] `uppercase_ascii_nocompress`
+- [ ] `mixedcase_unicode_nocompress`
+- [ ] `uppercase_unicode_nocompress`
+
 ## Roadmap
 
 This tool is currently a work-in-progress. Here is a rough to-do list:
 
-- [ ] Implement `mixedcase_ascii_nocompress` format
-- [ ] Implement `uppercase_ascii_nocompress` format
-- [ ] Implement `uppercase_unicode` format
-- [ ] Implement `mixedcase_unicode_nocompress` format
-- [ ] Implement `uppercase_unicode_nocompress` format
+- [ ] Implement remaining formats (see above)
 - [ ] Create a proper API for identifying and parsing Alpha2 formats
 - [ ] Expose more information about Alpha2 payloads to the user
 - [ ] Expose functionality as a crate
