@@ -63,6 +63,8 @@ jobs:
         name: Download Linux artifact
         with:
           name: alpha_decoder_linux
+      - name: Display structure of downloaded files
+        run: ls -R
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
