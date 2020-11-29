@@ -1,9 +1,8 @@
 name: Build alpha_decoder
 
 on:
-  - push
-  - pull_request
-
+  push:
+    branches: ['master']
 env:
   CARGO_TERM_COLOR: always
 
