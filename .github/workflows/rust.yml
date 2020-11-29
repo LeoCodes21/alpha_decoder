@@ -1,4 +1,4 @@
-name: Rust
+name: Build alpha_decoder
 
 on:
   - push
@@ -8,12 +8,30 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build_and_test:
-    name: Rust project
-    runs-on: windows-latest
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build: [linux, macos, windows]
+        include:
+          - build: linux
+            os: ubuntu-latest
+            rust: stable
+          - build: macos
+            os: macos-latest
+            rust: stable
+          - build: windows
+            os: windows-latest
+            rust: stable
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: ${{ matrix.rust }}
       - run: cargo build --release --all-features
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: release_${{ matrix.build }}
+          path: target/release
