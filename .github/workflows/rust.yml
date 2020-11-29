@@ -2,7 +2,7 @@ name: Build and release alpha_decoder
 
 on:
   push:
-    branches: ['master']
+    tags: ['v*']
 env:
   CARGO_TERM_COLOR: always
 
