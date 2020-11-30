@@ -17,7 +17,7 @@
 
 This tool is currently a work-in-progress. Here is a rough to-do list:
 
-- [ ] Implement remaining formats (see above)
+- [x] Implement remaining formats (see above)
 - [ ] Create a proper API for identifying and parsing Alpha2 formats
 - [ ] Expose more information about Alpha2 payloads to the user
 - [ ] Expose functionality as a crate
