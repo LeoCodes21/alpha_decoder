@@ -50,6 +50,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Box::new(formats::unicode::uppercase::UppercaseUnicodeFormat {}),
         Box::new(formats::ascii::mixed_case::MixedCaseAsciiFormat {}),
         Box::new(formats::ascii::uppercase::UppercaseAsciiFormat {}),
+        Box::new(formats::ascii::mixed_case_nocompress::MixedCaseNoCompressAsciiFormat {}),
+        Box::new(formats::ascii::uppercase_nocompress::UppercaseNoCompressAsciiFormat {}),
     ];
 
     let mut decoded_shellcode: Option<Vec<u8>> = None;
