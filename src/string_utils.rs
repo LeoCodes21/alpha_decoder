@@ -1,3 +1,5 @@
+// https://stackoverflow.com/a/54494217
+
 use std::ops::{Bound, RangeBounds};
 
 pub trait StringUtils {
