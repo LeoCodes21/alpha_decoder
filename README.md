@@ -10,8 +10,8 @@
 - [x] Uppercase Unicode
 - [x] `mixedcase_ascii_nocompress`
 - [x] `uppercase_ascii_nocompress`
-- [ ] `mixedcase_unicode_nocompress`
-- [ ] `uppercase_unicode_nocompress`
+- [x] `mixedcase_unicode_nocompress`
+- [x] `uppercase_unicode_nocompress`
 
 ## Roadmap
 
