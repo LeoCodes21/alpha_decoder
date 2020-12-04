@@ -10,17 +10,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "alpha_decoder"
-version = "0.1.0"
-dependencies = [
- "clap",
- "env_logger",
- "log",
- "pretty-hex",
- "pretty_env_logger",
-]
-
-[[package]]
 name = "atty"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -74,11 +63,23 @@ version = "3.0.0-beta.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "370f715b81112975b1b69db93e0b56ea4cd4e5002ac43b2da8474106a54096a1"
 dependencies = [
- "heck",
- "proc-macro-error",
- "proc-macro2",
- "quote",
- "syn",
+    "heck",
+    "proc-macro-error",
+    "proc-macro2",
+    "quote",
+    "syn",
+]
+
+[[package]]
+name = "decoder"
+version = "0.1.0"
+dependencies = [
+    "clap",
+    "env_logger",
+    "libdecoder",
+    "log",
+    "pretty-hex",
+    "pretty_env_logger",
 ]
 
 [[package]]
@@ -87,9 +88,9 @@ version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "44533bbbb3bb3c1fa17d9f2e4e38bbbaf8396ba82193c4cb1b6445d711445d36"
 dependencies = [
- "atty",
- "humantime",
- "log",
+    "atty",
+    "humantime",
+    "log",
  "regex",
  "termcolor",
 ]
@@ -150,12 +151,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4d58d1b70b004888f764dfbf6a26a3b0342a1632d33968e4a179d8011c760614"
 
 [[package]]
+name = "libdecoder"
+version = "0.1.0"
+
+[[package]]
 name = "log"
 version = "0.4.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4fabed175da42fed1fa0746b0ea71f412aa9d35e76e95e59b192c64b9dc2bf8b"
 dependencies = [
- "cfg-if",
+    "cfg-if",
 ]
 
 [[package]]
