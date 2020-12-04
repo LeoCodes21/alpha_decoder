@@ -1,5 +1,5 @@
+extern crate decoder;
 extern crate env_logger;
-extern crate libdecoder;
 #[macro_use]
 extern crate log;
 extern crate pretty_env_logger;
@@ -41,19 +41,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
          |_|            |______|                                  "#);
 
     let opts: Opts = Opts::parse();
-    let available_formats: Vec<Box<dyn libdecoder::formats::ShellcodeFormat>> = vec![
-        Box::new(libdecoder::formats::unicode::mixed_case::MixedCaseUnicodeFormat {}),
-        Box::new(libdecoder::formats::unicode::uppercase::UppercaseUnicodeFormat {}),
-        Box::new(libdecoder::formats::unicode::mixed_case_nocompress::MixedCaseNoCompressUnicodeFormat {}),
-        Box::new(libdecoder::formats::unicode::uppercase_nocompress::UppercaseNoCompressUnicodeFormat {}),
-        Box::new(libdecoder::formats::ascii::mixed_case::MixedCaseAsciiFormat {}),
-        Box::new(libdecoder::formats::ascii::uppercase::UppercaseAsciiFormat {}),
-        Box::new(libdecoder::formats::ascii::mixed_case_nocompress::MixedCaseNoCompressAsciiFormat {}),
-        Box::new(libdecoder::formats::ascii::uppercase_nocompress::UppercaseNoCompressAsciiFormat {}),
+    let available_formats: Vec<Box<dyn decoder::formats::ShellcodeFormat>> = vec![
+        Box::new(decoder::formats::unicode::mixed_case::MixedCaseUnicodeFormat {}),
+        Box::new(decoder::formats::unicode::uppercase::UppercaseUnicodeFormat {}),
+        Box::new(decoder::formats::unicode::mixed_case_nocompress::MixedCaseNoCompressUnicodeFormat {}),
+        Box::new(decoder::formats::unicode::uppercase_nocompress::UppercaseNoCompressUnicodeFormat {}),
+        Box::new(decoder::formats::ascii::mixed_case::MixedCaseAsciiFormat {}),
+        Box::new(decoder::formats::ascii::uppercase::UppercaseAsciiFormat {}),
+        Box::new(decoder::formats::ascii::mixed_case_nocompress::MixedCaseNoCompressAsciiFormat {}),
+        Box::new(decoder::formats::ascii::uppercase_nocompress::UppercaseNoCompressAsciiFormat {}),
     ];
 
     let mut decoded_shellcode: Option<Vec<u8>> = None;
-    let mut used_format: Option<Box<dyn libdecoder::formats::ShellcodeFormat>> = None;
+    let mut used_format: Option<Box<dyn decoder::formats::ShellcodeFormat>> = None;
 
     for format in available_formats {
         let decoded = format.decode(opts.code.as_str());

@@ -1,6 +1,6 @@
 [workspace]
 
 members = [
-    "decoder",
-    "libdecoder"
+    "decoder-cli",
+    "decoder"
 ]
