@@ -12,7 +12,7 @@ use clap::Clap;
 use pretty_hex::*;
 
 #[derive(Clap)]
-#[clap(version = "1.0", author = "Leo S. <coderleo42@gmail.com>")]
+#[clap(name = "alpha_decoder", version = "1.0", author = "Leo S. <coderleo42@gmail.com>")]
 struct Opts {
     #[clap(about = "Alphanumeric shellcode encoded in one of the Alpha2 formats", required = true, index = 1)]
     code: String,
