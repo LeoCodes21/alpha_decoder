@@ -11,8 +11,6 @@ use std::io::Write;
 use clap::Clap;
 use pretty_hex::*;
 
-use decoder::format::ParsedCode;
-
 #[derive(Clap)]
 #[clap(name = "alpha_decoder", version = "1.0", author = "Leo S. <coderleo42@gmail.com>")]
 struct Opts {

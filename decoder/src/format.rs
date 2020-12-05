@@ -6,5 +6,5 @@ pub trait ParsedCode: Display {
 
 pub trait CodeFormat {
     fn get_name(&self) -> &'static str;
-    fn parse(&self, code: &str) -> Option<Box<ParsedCode>>;
+    fn parse(&self, code: &str) -> Option<Box<dyn ParsedCode>>;
 }
