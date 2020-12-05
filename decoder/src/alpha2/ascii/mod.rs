@@ -36,10 +36,34 @@ impl Alpha2AsciiFactory {
 // (prefix, decoder, id)
 struct MatchingOption(&'static str, &'static str, &'static str);
 
+const MIXED_CASE_DECODER: &'static str = "jAXP0A0AkAAQ2AB2BB0BBABXP8ABuJI";
+
 impl Alpha2CodeFactory for Alpha2AsciiFactory {
     fn parse(&self, code: &str) -> Option<Box<Alpha2Code>> {
         let options: Vec<MatchingOption> = vec![
-            MatchingOption("IIIIIIIIIIIIIIIIII7", "jAXP0A0AkAAQ2AB2BB0BBABXP8ABuJI", "Mixed-case ASCII (NOPs)")
+            // Mixed-case
+            MatchingOption("IIIIIIIIIIIIIIIIII7", MIXED_CASE_DECODER, "Mixed-case ASCII (NOPs)"),
+            MatchingOption("PYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=EAX)"),
+            MatchingOption("IIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=ECX)"),
+            MatchingOption("JJJJJJJJJJJJJJJJJ7RY", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=EDX)"),
+            MatchingOption("SYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=EBX)"),
+            MatchingOption("TYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=ESP)"),
+            MatchingOption("UYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=EBP)"),
+            MatchingOption("VYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=ESI)"),
+            MatchingOption("WYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (BufferRegister=EDI)"),
+            MatchingOption("LLLLLLLLLLLLLLLLYIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp-0x10])"),
+            MatchingOption("LLLLLLLLLLLLYIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp-0xC])"),
+            MatchingOption("LLLLLLLLYIIIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp-0x8])"),
+            MatchingOption("LLLLYIIIIIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp-0x4])"),
+            MatchingOption("YIIIIIIIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp])"),
+            MatchingOption("YYIIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0x4])"),
+            MatchingOption("YYYIIIIIIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0x8])"),
+            MatchingOption("YYYYIIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0xC])"),
+            MatchingOption("YYYYYIIIIIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0x10])"),
+            MatchingOption("YYYYYYIIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0x14])"),
+            MatchingOption("YYYYYYYIIIIIIIIIIIIIIQZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0x18])"),
+            MatchingOption("YYYYYYYYIIIIIIIIIIIII7QZ", MIXED_CASE_DECODER, "Mixed-case ASCII (Buffer @ [esp+0x1C])"),
+            MatchingOption(concat!("VTX630VXH49HHHPhYAAQhZYYYYAAQQDDDd36FFFFTXVj0PPTUPPa301089", "IIIIIIIIIIIIIIIII7QZ"), MIXED_CASE_DECODER, "Mixed-case ASCII (SEH, BufferRegister=ECX)")
         ];
 
         for option in options {
