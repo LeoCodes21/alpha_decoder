@@ -2,6 +2,7 @@ use crate::alpha2::{Alpha2Code, Alpha2CodeFactory};
 use crate::string_utils::StringUtils;
 
 mod mixed_case;
+mod uppercase;
 
 type MatchingOption = (&'static str, &'static str, &'static str);
 
@@ -35,6 +36,7 @@ impl Alpha2CodeFactory for Alpha2AsciiFactory {
     fn parse(&self, code: &str) -> Option<Box<Alpha2Code>> {
         let options: &mut Vec<MatchingOption> = &mut vec![];
         options.extend_from_slice(mixed_case::OPTIONS);
+        options.extend_from_slice(uppercase::OPTIONS);
 
         for option in options {
             let full_prefix: String = option.0.to_owned() + option.1;
