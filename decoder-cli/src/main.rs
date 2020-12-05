@@ -15,7 +15,7 @@ use pretty_hex::*;
 #[derive(Clap)]
 #[clap(name = "alpha_decoder", version = "1.0", author = "Leo S. <coderleo42@gmail.com>")]
 struct Opts {
-    #[clap(about = "Alphanumeric shellcode encoded in one of the Alpha2 formats", required = true, index = 1)]
+    #[clap(about = "Alphanumeric shellcode to decode", required = true, index = 1)]
     code: String,
 
     #[clap(long, short, about = "Path to output file for decoded shellcode")]
