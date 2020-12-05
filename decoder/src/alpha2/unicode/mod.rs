@@ -2,6 +2,7 @@ use crate::alpha2::{Alpha2Code, Alpha2CodeFactory};
 use crate::string_utils::StringUtils;
 
 mod mixed_case;
+mod uppercase;
 
 pub struct Alpha2UnicodeFactory {}
 
@@ -9,6 +10,7 @@ impl Alpha2CodeFactory for Alpha2UnicodeFactory {
     fn get_options(&self) -> Vec<(&'static str, &'static str, &'static str)> {
         let options: &mut Vec<(&'static str, &'static str, &'static str)> = &mut vec![];
         options.extend_from_slice(mixed_case::OPTIONS);
+        options.extend_from_slice(uppercase::OPTIONS);
         options.to_vec()
     }
 
