@@ -11,6 +11,8 @@ use std::io::Write;
 use clap::Clap;
 use pretty_hex::*;
 
+use decoder::format::ParsedCode;
+
 #[derive(Clap)]
 #[clap(name = "alpha_decoder", version = "1.0", author = "Leo S. <coderleo42@gmail.com>")]
 struct Opts {
@@ -41,22 +43,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
          |_|            |______|                                  "#);
 
     let opts: Opts = Opts::parse();
-    let available_formats: Vec<Box<dyn decoder::formats::ShellcodeFormat>> = vec![
-        Box::new(decoder::formats::unicode::mixed_case::MixedCaseUnicodeFormat {}),
-        Box::new(decoder::formats::unicode::uppercase::UppercaseUnicodeFormat {}),
-        Box::new(decoder::formats::unicode::mixed_case_nocompress::MixedCaseNoCompressUnicodeFormat {}),
-        Box::new(decoder::formats::unicode::uppercase_nocompress::UppercaseNoCompressUnicodeFormat {}),
-        Box::new(decoder::formats::ascii::mixed_case::MixedCaseAsciiFormat {}),
-        Box::new(decoder::formats::ascii::uppercase::UppercaseAsciiFormat {}),
-        Box::new(decoder::formats::ascii::mixed_case_nocompress::MixedCaseNoCompressAsciiFormat {}),
-        Box::new(decoder::formats::ascii::uppercase_nocompress::UppercaseNoCompressAsciiFormat {}),
+    let available_formats: Vec<Box<dyn decoder::format::CodeFormat>> = vec![
+        Box::new(decoder::alpha2::Alpha2CodeFormat {})
     ];
 
-    let mut decoded_shellcode: Option<Vec<u8>> = None;
-    let mut used_format: Option<Box<dyn decoder::formats::ShellcodeFormat>> = None;
+    let mut decoded_shellcode: Option<Box<dyn decoder::format::ParsedCode>> = None;
+    let mut used_format: Option<Box<dyn decoder::format::CodeFormat>> = None;
 
     for format in available_formats {
-        let decoded = format.decode(opts.code.as_str());
+        let decoded = format.parse(opts.code.as_str());
 
         if decoded.is_none() {
             continue;
@@ -71,23 +66,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         error!("Shellcode could not be decoded.");
     } else {
         let unwrapped_code = decoded_shellcode.unwrap();
-        info!("Decoded shellcode as {}: {}", used_format.unwrap().get_name(), unwrapped_code.hex_conf(HexConfig { ascii: false, chunk: 0, group: 0, title: false, width: 0 }));
-
-        if opts.hex_dump {
-            println!("{:?}", unwrapped_code.hex_dump());
-        }
-
-        match opts.output_path {
-            None => {}
-            Some(s) => {
-                let mut file = File::create(s)?;
-
-                match file.write_all(unwrapped_code.as_slice()) {
-                    Ok(_) => {}
-                    Err(e) => error!("Could not write file: {}", e.to_string())
-                }
-            }
-        }
+        info!("Decoded shellcode as {}: {}", used_format.unwrap().get_name(), unwrapped_code.decode().hex_conf(HexConfig { ascii: false, chunk: 0, group: 0, title: false, width: 0 }));
+        //
+        // if opts.hex_dump {
+        //     println!("{:?}", unwrapped_code.hex_dump());
+        // }
+        //
+        // match opts.output_path {
+        //     None => {}
+        //     Some(s) => {
+        //         let mut file = File::create(s)?;
+        //
+        //         match file.write_all(unwrapped_code.as_slice()) {
+        //             Ok(_) => {}
+        //             Err(e) => error!("Could not write file: {}", e.to_string())
+        //         }
+        //     }
+        // }
     }
 
     Ok(())
