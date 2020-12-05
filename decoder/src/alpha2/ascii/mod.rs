@@ -1,5 +1,4 @@
-use crate::alpha2::{Alpha2Code, Alpha2CodeFactory};
-use crate::string_utils::StringUtils;
+use crate::alpha2::Alpha2CodeFactory;
 
 mod mixed_case;
 mod uppercase;
