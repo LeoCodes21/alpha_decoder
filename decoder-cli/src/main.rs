@@ -1,4 +1,5 @@
 extern crate decoder;
+extern crate decoder_alpha2;
 extern crate env_logger;
 #[macro_use]
 extern crate log;
@@ -42,7 +43,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let opts: Opts = Opts::parse();
     let available_formats: Vec<Box<dyn decoder::format::CodeFormat>> = vec![
-        Box::new(decoder::alpha2::Alpha2CodeFormat {})
+        Box::new(decoder_alpha2::Alpha2CodeFormat {})
     ];
 
     let mut decoded_shellcode: Option<Box<dyn decoder::format::ParsedCode>> = None;
