@@ -78,7 +78,8 @@ impl CodeFormat for Alpha2CodeFormat {
 
     fn parse(&self, code: &str) -> Option<Box<dyn ParsedCode>> {
         let factories: Vec<Box<dyn Alpha2CodeFactory>> = vec![
-            Box::new(ascii::Alpha2AsciiFactory {})
+            Box::new(ascii::Alpha2AsciiFactory {}),
+            Box::new(unicode::Alpha2UnicodeFactory {}),
         ];
 
         for factory in factories {
