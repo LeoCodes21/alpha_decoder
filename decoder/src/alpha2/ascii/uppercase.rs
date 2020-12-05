@@ -1,4 +1,4 @@
-use crate::alpha2::ascii::MatchingOption;
+use crate::alpha2::MatchingOption;
 
 const UPPERCASE_DECODER: &'static str = "VTX30VX4AP0A3HH0A00ABAABTAAQ2AB2BB0BBXP8ACJJI";
 

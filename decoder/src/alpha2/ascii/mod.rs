@@ -4,11 +4,15 @@ use crate::string_utils::StringUtils;
 mod mixed_case;
 mod uppercase;
 
-type MatchingOption = (&'static str, &'static str, &'static str);
-
 pub struct Alpha2AsciiFactory {}
 
-impl Alpha2AsciiFactory {
+impl Alpha2CodeFactory for Alpha2AsciiFactory {
+    fn get_options(&self) -> Vec<(&'static str, &'static str, &'static str)> {
+        let options: &mut Vec<(&'static str, &'static str, &'static str)> = &mut vec![];
+        options.extend_from_slice(mixed_case::OPTIONS);
+        options.extend_from_slice(uppercase::OPTIONS);
+        options.to_vec()
+    }
     fn decode(&self, code: &str) -> Vec<u8> {
         let mut result: Vec<u8> = Vec::new();
 
@@ -29,30 +33,5 @@ impl Alpha2AsciiFactory {
         }
 
         result
-    }
-}
-
-impl Alpha2CodeFactory for Alpha2AsciiFactory {
-    fn parse(&self, code: &str) -> Option<Box<Alpha2Code>> {
-        let options: &mut Vec<MatchingOption> = &mut vec![];
-        options.extend_from_slice(mixed_case::OPTIONS);
-        options.extend_from_slice(uppercase::OPTIONS);
-
-        for option in options {
-            let full_prefix: String = option.0.to_owned() + option.1;
-            if code.starts_with(full_prefix.as_str()) {
-                let encoded_part = code.substring(full_prefix.len(), code.len() - full_prefix.len());
-
-                return Some(Box::new(Alpha2Code {
-                    prefix: option.0.to_string(),
-                    decoder_body: option.1.to_string(),
-                    encoded_data: encoded_part.to_string(),
-                    code_type: option.2.to_string(),
-                    decoded_data: self.decode(encoded_part),
-                }));
-            }
-        }
-
-        return None;
     }
 }

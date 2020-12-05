@@ -1,4 +1,4 @@
-use crate::alpha2::ascii::MatchingOption;
+use crate::alpha2::MatchingOption;
 
 const MIXED_CASE_DECODER: &'static str = "jAXP0A0AkAAQ2AB2BB0BBABXP8ABuJI";
 
