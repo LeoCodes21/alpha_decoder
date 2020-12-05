@@ -6,15 +6,9 @@ pub struct Alpha2AsciiFactory {}
 impl Alpha2AsciiFactory {
     fn decode(&self, code: &str) -> Vec<u8> {
         let mut result: Vec<u8> = Vec::new();
-        let max_n = (code.len() / 2) - 1;
 
         for n in 0..code.len() / 2 {
             let val1 = code.chars().nth(2 * n).unwrap();
-
-            if val1 == 'A' && n == max_n {
-                break;
-            }
-
             let val2 = code.chars().nth(2 * n + 1).unwrap();
             let ord1: u8 = val1 as u8;
             let ord2: u8 = val2 as u8;
