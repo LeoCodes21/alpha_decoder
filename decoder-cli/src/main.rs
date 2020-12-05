@@ -66,23 +66,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         error!("Shellcode could not be decoded.");
     } else {
         let unwrapped_code = decoded_shellcode.unwrap();
-        info!("Decoded shellcode as {}: {}", used_format.unwrap().get_name(), unwrapped_code.decode().hex_conf(HexConfig { ascii: false, chunk: 0, group: 0, title: false, width: 0 }));
-        //
-        // if opts.hex_dump {
-        //     println!("{:?}", unwrapped_code.hex_dump());
-        // }
-        //
-        // match opts.output_path {
-        //     None => {}
-        //     Some(s) => {
-        //         let mut file = File::create(s)?;
-        //
-        //         match file.write_all(unwrapped_code.as_slice()) {
-        //             Ok(_) => {}
-        //             Err(e) => error!("Could not write file: {}", e.to_string())
-        //         }
-        //     }
-        // }
+        let decoded = unwrapped_code.decode();
+
+        info!("Decoded shellcode with format {}: {}", used_format.unwrap().get_name(), unwrapped_code);
+        if opts.hex_dump {
+            info!("Hex stream: {}", decoded.hex_conf(HexConfig { ascii: false, chunk: 0, group: 0, title: false, width: 0 }));
+            info!("Hex dump: {:?}", decoded.hex_dump());
+        }
+
+        match opts.output_path {
+            None => {}
+            Some(s) => {
+                let mut file = File::create(s)?;
+
+                match file.write_all(decoded.as_slice()) {
+                    Ok(_) => {}
+                    Err(e) => error!("Could not write file: {}", e.to_string())
+                }
+            }
+        }
     }
 
     Ok(())
