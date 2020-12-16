@@ -72,26 +72,26 @@ dependencies = [
 
 [[package]]
 name = "decoder"
-version = "0.1.0"
+version = "0.3.0"
 
 [[package]]
 name = "decoder-alpha2"
-version = "0.1.0"
+version = "0.3.0"
 dependencies = [
- "decoder",
+    "decoder",
 ]
 
 [[package]]
 name = "decoder-cli"
-version = "0.1.0"
+version = "0.3.0"
 dependencies = [
- "clap",
- "decoder",
- "decoder-alpha2",
- "env_logger",
- "log",
- "pretty-hex",
- "pretty_env_logger",
+    "clap",
+    "decoder",
+    "decoder-alpha2",
+    "env_logger",
+    "log",
+    "pretty-hex",
+    "pretty_env_logger",
 ]
 
 [[package]]
